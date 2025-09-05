@@ -1,0 +1,223 @@
+/* Estilos específicos para web */
+
+/* Reset básico para web */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Mejoras de cursor para elementos interactivos */
+button,
+[role="button"],
+[data-focusable="true"] {
+  cursor: pointer !important;
+  transition: all 0.2s ease;
+}
+
+button:hover,
+[role="button"]:hover,
+[data-focusable="true"]:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Mejoras para inputs */
+input,
+textarea {
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+input:focus,
+textarea:focus {
+  box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.2);
+  border-color: #4ade80;
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Modo oscuro para scrollbar */
+@media (prefers-color-scheme: dark) {
+  ::-webkit-scrollbar-track {
+    background: #1e293b;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #475569;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+  }
+}
+
+/* Contenedor principal responsivo */
+.main-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Breakpoints para tablet y desktop */
+@media (min-width: 768px) {
+  .main-container {
+    padding: 0 40px;
+  }
+  
+  /* Mejoras para tarjetas en tablet/desktop */
+  .card {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  /* Grid mejorado para logros */
+  .achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .main-container {
+    padding: 0 60px;
+  }
+  
+  /* Layout de dos columnas para desktop */
+  .desktop-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+}
+
+/* Animaciones suaves */
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Estados de hover para elementos interactivos */
+.interactive-element {
+  transition: all 0.2s ease;
+}
+
+.interactive-element:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Mejoras para formularios */
+.form-container {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .form-container {
+    max-width: 500px;
+  }
+}
+
+/* Estilos para botones */
+.button-primary {
+  background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+  border: none;
+  border-radius: 12px;
+  padding: 12px 24px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.button-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(74, 222, 128, 0.3);
+}
+
+.button-secondary {
+  background: transparent;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 12px 24px;
+  color: #374151;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.button-secondary:hover {
+  border-color: #4ade80;
+  color: #4ade80;
+  transform: translateY(-1px);
+}
+
+/* Mejoras para navegación por pestañas */
+.tab-bar {
+  position: sticky;
+  bottom: 0;
+  z-index: 100;
+}
+
+@media (min-width: 768px) {
+  .tab-bar {
+    position: relative;
+    bottom: auto;
+    border-radius: 16px 16px 0 0;
+    margin: 0 auto;
+    max-width: 600px;
+  }
+}
+
+/* Utilidades de espaciado responsivo */
+.responsive-padding {
+  padding: 16px;
+}
+
+@media (min-width: 768px) {
+  .responsive-padding {
+    padding: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .responsive-padding {
+    padding: 32px;
+  }
+}
+
