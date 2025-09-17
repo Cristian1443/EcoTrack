@@ -55,7 +55,9 @@ export default function LessonsScreen() {
             <Text style={[styles.backIcon, { color: useThemeColor({}, 'text') }]}>←</Text>
           </TouchableOpacity>
           <Text style={[styles.title, { color: useThemeColor({}, 'text') }]}>Lecciones</Text>
-          <View style={{ width: 24 }} />
+          <TouchableOpacity onPress={() => router.push('/lesson-form')}>
+            <Text style={styles.addIcon}>+</Text>
+          </TouchableOpacity>
         </View>
 
         <View style={styles.section}>
@@ -113,6 +115,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '600',
   },
+  addIcon: { fontSize: 28, color: '#4ade80' },
   section: {
     paddingHorizontal: 20,
     paddingBottom: 100,

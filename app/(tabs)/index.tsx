@@ -132,6 +132,7 @@ export default function LessonsScreen() {
             <TouchableOpacity 
               style={[styles.socialButton, { backgroundColor: cardBg, borderColor: border, width: '100%' }]}
               activeOpacity={0.7}
+              onPress={() => router.push('/corporate-dashboard')}
             >
               <Text style={styles.socialIcon}>📊</Text>
               <ThemedText style={styles.socialText}>Dashboard Corporativo</ThemedText>
