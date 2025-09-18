@@ -8,10 +8,10 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "lint": "expo lint",
-    "cypress:open": "cypress open",
-    "cypress:run": "cypress run",
-    "test:e2e": "cypress run",
-    "test:e2e:open": "cypress open"
+    "cypress:open": "npx cypress open",
+    "cypress:run": "npx cypress run",
+    "test:e2e": "npx cypress run",
+    "test:e2e:open": "npx cypress open"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.2",
@@ -48,6 +48,7 @@
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@types/react": "^19.1.13",
+    "cypress": "^15.2.0",
     "eslint": "^9.25.0",
     "eslint-config-expo": "~10.0.0",
     "typescript": "~5.9.2"
