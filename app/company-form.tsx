@@ -2,10 +2,11 @@ import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import Button from '@/components/ui/Button';
 import Input from '@/components/ui/Input';
+import WebContainer from '@/components/WebContainer';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
-import { Alert, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Dimensions, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const companyAvatars = ['🌱', '♻️', '🌍', '⚡', '💧', '🏭', '🌿', '🔋'];
 const industries = ['Tecnología', 'Manufactura', 'Consultoría', 'Energía', 'Agricultura', 'Salud', 'Educación', 'Finanzas'];
@@ -29,6 +30,9 @@ export default function CompanyFormScreen() {
   const cardBg = useThemeColor({}, 'card');
   const border = useThemeColor({}, 'border');
   const text = useThemeColor({}, 'text');
+  const { width } = Dimensions.get('window');
+  const isWeb = Platform.OS === 'web';
+  const isTablet = width >= 768;
 
   useEffect(() => {
     if (isEditing) {
@@ -75,7 +79,7 @@ export default function CompanyFormScreen() {
         <View style={{ width: 24 }} />
       </View>
 
-      <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
+      <WebContainer scrollable maxWidth={isTablet ? 800 : 600}>
         {/* Avatar */}
         <View style={styles.section}>
           <ThemedText style={styles.sectionTitle}>Logo/Avatar</ThemedText>
@@ -192,10 +196,8 @@ export default function CompanyFormScreen() {
             />
           </View>
         </View>
-      </ScrollView>
-
-      {/* Botones */}
-      <View style={styles.buttonsContainer}>
+        {/* Botones */}
+        <View style={styles.buttonsContainer}>
         <Button
           label={isEditing ? 'Actualizar empresa' : 'Crear empresa'}
           onPress={handleSubmit}
@@ -207,7 +209,8 @@ export default function CompanyFormScreen() {
           onPress={() => router.back()}
           style={styles.cancelButton}
         />
-      </View>
+        </View>
+      </WebContainer>
     </ThemedView>
   );
 }
@@ -225,9 +228,22 @@ const styles = StyleSheet.create({
   backIcon: { fontSize: 24 },
   title: { fontSize: 20, fontWeight: '700' },
   content: { flex: 1 },
-  section: { paddingHorizontal: 24, marginBottom: 32 },
+  section: { 
+    paddingHorizontal: 24, 
+    marginBottom: 32,
+    ...(Platform.OS === 'web' && {
+      paddingHorizontal: 0,
+    }),
+  },
   sectionTitle: { fontSize: 18, fontWeight: 'bold', marginBottom: 16 },
-  avatarsGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 12 },
+  avatarsGrid: { 
+    flexDirection: 'row', 
+    flexWrap: 'wrap', 
+    gap: 12,
+    ...(Platform.OS === 'web' && {
+      justifyContent: 'center',
+    }),
+  },
   avatarOption: {
     width: 60,
     height: 60,
@@ -254,6 +270,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingBottom: 32,
     gap: 12,
+    ...(Platform.OS === 'web' && {
+      paddingHorizontal: 0,
+      flexDirection: 'row',
+      justifyContent: 'center',
+      maxWidth: 400,
+      alignSelf: 'center',
+    }),
   },
   submitButton: { marginBottom: 8 },
   cancelButton: { marginBottom: 8 },

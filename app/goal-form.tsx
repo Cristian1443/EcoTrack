@@ -2,10 +2,11 @@ import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import Button from '@/components/ui/Button';
 import Input from '@/components/ui/Input';
+import WebContainer from '@/components/WebContainer';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
-import { Alert, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Dimensions, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const categories = ['Agua', 'Energía', 'Transporte', 'Residuos', 'Educación', 'Bienestar'];
 const priorities = ['Alta', 'Media', 'Baja'];
@@ -32,6 +33,9 @@ export default function GoalFormScreen() {
   const cardBg = useThemeColor({}, 'card');
   const border = useThemeColor({}, 'border');
   const text = useThemeColor({}, 'text');
+  const { width } = Dimensions.get('window');
+  const isWeb = Platform.OS === 'web';
+  const isTablet = width >= 768;
 
   useEffect(() => {
     if (isEditing) {
@@ -88,7 +92,7 @@ export default function GoalFormScreen() {
         <View style={{ width: 24 }} />
       </View>
 
-      <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
+      <WebContainer scrollable maxWidth={isTablet ? 800 : 600}>
         {/* Información básica */}
         <View style={styles.section}>
           <ThemedText style={styles.sectionTitle}>Información básica</ThemedText>
@@ -278,10 +282,8 @@ export default function GoalFormScreen() {
             )}
           </View>
         </View>
-      </ScrollView>
-
-      {/* Botones */}
-      <View style={styles.buttonsContainer}>
+        {/* Botones */}
+        <View style={styles.buttonsContainer}>
         <Button
           label={isEditing ? 'Actualizar meta' : 'Crear meta'}
           onPress={handleSubmit}
@@ -293,7 +295,8 @@ export default function GoalFormScreen() {
           onPress={() => router.back()}
           style={styles.cancelButton}
         />
-      </View>
+        </View>
+      </WebContainer>
     </ThemedView>
   );
 }
@@ -311,7 +314,13 @@ const styles = StyleSheet.create({
   backIcon: { fontSize: 24 },
   title: { fontSize: 20, fontWeight: '700' },
   content: { flex: 1 },
-  section: { paddingHorizontal: 24, marginBottom: 32 },
+  section: { 
+    paddingHorizontal: 24, 
+    marginBottom: 32,
+    ...(Platform.OS === 'web' && {
+      paddingHorizontal: 0,
+    }),
+  },
   sectionTitle: { fontSize: 18, fontWeight: 'bold', marginBottom: 16 },
   inputGroup: { marginBottom: 16 },
   inputLabel: { fontSize: 16, fontWeight: '600', marginBottom: 8 },
@@ -319,7 +328,14 @@ const styles = StyleSheet.create({
   targetRow: { flexDirection: 'row', gap: 12 },
   targetInput: { flex: 2 },
   unitInput: { flex: 1 },
-  categoriesGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
+  categoriesGrid: { 
+    flexDirection: 'row', 
+    flexWrap: 'wrap', 
+    gap: 8,
+    ...(Platform.OS === 'web' && {
+      justifyContent: 'center',
+    }),
+  },
   categoryOption: {
     paddingHorizontal: 16,
     paddingVertical: 12,
@@ -329,7 +345,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   categoryOptionText: { fontSize: 14, fontWeight: '500' },
-  prioritiesRow: { flexDirection: 'row', gap: 12 },
+  prioritiesRow: { 
+    flexDirection: 'row', 
+    gap: 12,
+    ...(Platform.OS === 'web' && {
+      justifyContent: 'center',
+    }),
+  },
   priorityOption: {
     flex: 1,
     paddingVertical: 12,
@@ -338,7 +360,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   priorityText: { fontSize: 14, fontWeight: '600' },
-  areasGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
+  areasGrid: { 
+    flexDirection: 'row', 
+    flexWrap: 'wrap', 
+    gap: 8,
+    ...(Platform.OS === 'web' && {
+      justifyContent: 'center',
+    }),
+  },
   areaOption: {
     paddingHorizontal: 16,
     paddingVertical: 12,
@@ -348,7 +377,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   areaOptionText: { fontSize: 14, fontWeight: '500' },
-  iconsGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 12 },
+  iconsGrid: { 
+    flexDirection: 'row', 
+    flexWrap: 'wrap', 
+    gap: 12,
+    ...(Platform.OS === 'web' && {
+      justifyContent: 'center',
+    }),
+  },
   iconOption: {
     width: 50,
     height: 50,
@@ -402,6 +438,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingBottom: 32,
     gap: 12,
+    ...(Platform.OS === 'web' && {
+      paddingHorizontal: 0,
+      flexDirection: 'row',
+      justifyContent: 'center',
+      maxWidth: 400,
+      alignSelf: 'center',
+    }),
   },
   submitButton: { marginBottom: 8 },
   cancelButton: { marginBottom: 8 },
