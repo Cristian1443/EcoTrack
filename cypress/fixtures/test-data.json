@@ -1,0 +1,69 @@
+{
+  "employees": {
+    "new": {
+      "name": "Juan Pérez Test",
+      "email": "juan.perez@test.com",
+      "position": "Desarrollador Test",
+      "area": "Tecnología"
+    },
+    "edit": {
+      "name": "Elena Ramirez Updated",
+      "email": "elena.updated@ecotech.com",
+      "position": "Gerente Senior de Sostenibilidad",
+      "area": "Recursos Humanos"
+    }
+  },
+  "companies": {
+    "new": {
+      "name": "Test Company",
+      "description": "Empresa de pruebas para testing E2E",
+      "industry": "Tecnología",
+      "employees": "50",
+      "website": "https://test-company.com",
+      "email": "contact@test-company.com",
+      "phone": "+57 300 000 0000"
+    }
+  },
+  "areas": {
+    "new": {
+      "name": "Área de Testing",
+      "description": "Área dedicada a pruebas automatizadas",
+      "leader": "QA Manager",
+      "budget": "25000"
+    }
+  },
+  "activities": {
+    "new": {
+      "title": "Actividad de Prueba",
+      "description": "Actividad creada para testing E2E",
+      "category": "Agua",
+      "duration": "10 min",
+      "difficulty": "Fácil",
+      "xpReward": "15"
+    }
+  },
+  "goals": {
+    "new": {
+      "title": "Meta de Testing",
+      "description": "Meta creada para pruebas automatizadas",
+      "category": "Agua",
+      "targetValue": "50",
+      "unit": "%",
+      "deadline": "2024-12-31",
+      "priority": "Media",
+      "assignedTo": "Área de Testing"
+    }
+  },
+  "lessons": {
+    "new": {
+      "title": "Lección de Prueba",
+      "description": "Lección creada para testing",
+      "content": "Contenido de la lección de prueba",
+      "category": "Agua",
+      "duration": "20 min",
+      "difficulty": "Fácil",
+      "xpReward": "30",
+      "author": "Test Author"
+    }
+  }
+}
