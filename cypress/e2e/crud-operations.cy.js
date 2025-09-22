@@ -5,8 +5,9 @@ describe('Operaciones CRUD', () => {
 
   describe('CRUD de Empleados', () => {
     it('debe poder crear un nuevo empleado', () => {
-      cy.contains('Gestionar Empleados').click();
-      cy.get('text').contains('+').click();
+      cy.contains('⚙️').click();
+      cy.contains('Empleados').click();
+      cy.contains('+').click();
       cy.shouldBeOnPage('/employee-form');
       
       // Verificar que el formulario está vacío para nuevo empleado
@@ -16,7 +17,8 @@ describe('Operaciones CRUD', () => {
     });
 
     it('debe poder editar un empleado existente', () => {
-      cy.contains('Gestionar Empleados').click();
+      cy.contains('⚙️').click();
+      cy.contains('Empleados').click();
       cy.contains('Editar').first().click();
       cy.shouldBeOnPage('/employee-form');
       
@@ -26,7 +28,8 @@ describe('Operaciones CRUD', () => {
     });
 
     it('debe poder eliminar un empleado', () => {
-      cy.contains('Gestionar Empleados').click();
+      cy.contains('⚙️').click();
+      cy.contains('Empleados').click();
       
       // Contar empleados iniciales
       cy.get('[data-testid="employee-card"]').should('have.length.at.least', 1);
@@ -39,7 +42,8 @@ describe('Operaciones CRUD', () => {
     });
 
     it('debe poder cambiar estado activo/inactivo', () => {
-      cy.contains('Gestionar Empleados').click();
+      cy.contains('⚙️').click();
+      cy.contains('Empleados').click();
       
       // Buscar empleado activo
       cy.contains('Activo').should('be.visible');
@@ -52,8 +56,9 @@ describe('Operaciones CRUD', () => {
 
   describe('CRUD de Empresas', () => {
     it('debe poder navegar y crear nueva empresa', () => {
-      cy.contains('Gestionar Empresas').click();
-      cy.get('text').contains('+').click();
+      cy.contains('⚙️').click();
+      cy.contains('Empresas').click();
+      cy.contains('+').click();
       cy.shouldBeOnPage('/company-form');
       
       cy.contains('Nueva Empresa').should('be.visible');
@@ -61,7 +66,8 @@ describe('Operaciones CRUD', () => {
     });
 
     it('debe mostrar estadísticas de empresas', () => {
-      cy.contains('Gestionar Empresas').click();
+      cy.contains('⚙️').click();
+      cy.contains('Empresas').click();
       cy.shouldBeOnPage('/companies');
       
       cy.contains('Empresas').should('be.visible');
@@ -72,8 +78,9 @@ describe('Operaciones CRUD', () => {
 
   describe('CRUD de Áreas', () => {
     it('debe poder navegar y crear nueva área', () => {
-      cy.contains('Gestionar Áreas').click();
-      cy.get('text').contains('+').click();
+      cy.contains('⚙️').click();
+      cy.contains('Áreas').click();
+      cy.contains('+').click();
       cy.shouldBeOnPage('/area-form');
       
       cy.contains('Nueva Área').should('be.visible');
@@ -81,7 +88,8 @@ describe('Operaciones CRUD', () => {
     });
 
     it('debe mostrar información de áreas existentes', () => {
-      cy.contains('Gestionar Áreas').click();
+      cy.contains('⚙️').click();
+      cy.contains('Áreas').click();
       cy.shouldBeOnPage('/areas');
       
       cy.contains('Recursos Humanos').should('be.visible');
@@ -92,15 +100,17 @@ describe('Operaciones CRUD', () => {
 
   describe('CRUD de Actividades', () => {
     it('debe poder navegar y crear nueva actividad', () => {
-      cy.contains('Ver Actividades').click();
-      cy.get('text').contains('+').click();
+      cy.contains('⚙️').click();
+      cy.contains('Actividades').click();
+      cy.contains('+').click();
       cy.shouldBeOnPage('/activity-form');
       
       cy.contains('Nueva Actividad').should('be.visible');
     });
 
     it('debe mostrar filtros de actividades', () => {
-      cy.contains('Ver Actividades').click();
+      cy.contains('⚙️').click();
+      cy.contains('Actividades').click();
       cy.shouldBeOnPage('/activities');
       
       cy.contains('Filtros').should('be.visible');
@@ -111,8 +121,9 @@ describe('Operaciones CRUD', () => {
 
   describe('CRUD de Metas', () => {
     it('debe poder navegar y crear nueva meta', () => {
-      cy.contains('Revisar Metas').click();
-      cy.get('text').contains('+').click();
+      cy.contains('⚙️').click();
+      cy.contains('Metas').click();
+      cy.contains('+').click();
       cy.shouldBeOnPage('/goal-form');
       
       cy.contains('Nueva Meta').should('be.visible');
@@ -120,7 +131,8 @@ describe('Operaciones CRUD', () => {
     });
 
     it('debe mostrar progreso de metas', () => {
-      cy.contains('Revisar Metas').click();
+      cy.contains('⚙️').click();
+      cy.contains('Metas').click();
       cy.shouldBeOnPage('/goals');
       
       cy.contains('Total').should('be.visible');
@@ -132,7 +144,7 @@ describe('Operaciones CRUD', () => {
   describe('CRUD de Lecciones', () => {
     it('debe poder navegar y crear nueva lección', () => {
       cy.contains('Lecciones').click();
-      cy.get('text').contains('+').click();
+      cy.contains('+').click();
       cy.shouldBeOnPage('/lesson-form');
       
       cy.contains('Nueva Lección').should('be.visible');

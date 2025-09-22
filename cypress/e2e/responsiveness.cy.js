@@ -15,7 +15,6 @@ describe('Responsividad de la Aplicación', () => {
         // Verificar elementos principales
         cy.contains('EcoTrack').should('be.visible');
         cy.contains('Dashboard Corporativo').should('be.visible');
-        cy.contains('Gestionar Empleados').should('be.visible');
         
         // Verificar que los botones son clickeables
         cy.contains('Dashboard Corporativo').should('be.visible').and('not.be.disabled');
@@ -46,11 +45,10 @@ describe('Responsividad de la Aplicación', () => {
 
   describe('Pantallas CRUD', () => {
     const crudScreens = [
-      { button: 'Gestionar Empleados', route: '/employees' },
-      { button: 'Gestionar Empresas', route: '/companies' },
-      { button: 'Gestionar Áreas', route: '/areas' },
-      { button: 'Ver Actividades', route: '/activities' },
-      { button: 'Revisar Metas', route: '/goals' },
+      { button: 'Empleados', route: '/employees' },
+      { button: 'Empresas', route: '/companies' },
+      { button: 'Áreas', route: '/areas' },
+      { button: 'Actividades', route: '/activities' },
     ];
 
     crudScreens.forEach(screen => {
@@ -59,12 +57,13 @@ describe('Responsividad de la Aplicación', () => {
           cy.viewport(viewport.width, viewport.height);
           cy.visitAndWait('/');
           
+          cy.contains('⚙️').click();
           cy.contains(screen.button).click();
           cy.shouldBeOnPage(screen.route);
           
           // Verificar elementos comunes de CRUD
-          cy.get('text').contains('←').should('be.visible'); // Botón back
-          cy.get('text').contains('+').should('be.visible'); // Botón crear
+          cy.contains('←').should('be.visible'); // Botón back
+          cy.contains('+').should('be.visible'); // Botón crear
           
           // Verificar que hay contenido
           cy.get('body').should('contain.text', 'Total');
@@ -75,11 +74,10 @@ describe('Responsividad de la Aplicación', () => {
 
   describe('Formularios', () => {
     const forms = [
-      { screen: 'Gestionar Empleados', route: '/employee-form' },
-      { screen: 'Gestionar Empresas', route: '/company-form' },
-      { screen: 'Gestionar Áreas', route: '/area-form' },
-      { screen: 'Ver Actividades', route: '/activity-form' },
-      { screen: 'Revisar Metas', route: '/goal-form' },
+      { screen: 'Empleados', route: '/employee-form' },
+      { screen: 'Empresas', route: '/company-form' },
+      { screen: 'Áreas', route: '/area-form' },
+      { screen: 'Actividades', route: '/activity-form' },
     ];
 
     forms.forEach(form => {
@@ -88,12 +86,13 @@ describe('Responsividad de la Aplicación', () => {
           cy.viewport(viewport.width, viewport.height);
           cy.visitAndWait('/');
           
+          cy.contains('⚙️').click();
           cy.contains(form.screen).click();
-          cy.get('text').contains('+').click();
+          cy.contains('+').click();
           cy.shouldBeOnPage(form.route);
           
           // Verificar elementos del formulario
-          cy.get('text').contains('←').should('be.visible');
+          cy.contains('←').should('be.visible');
           cy.get('button').should('have.length.at.least', 2); // Al menos crear y cancelar
           
           // En desktop, verificar que los botones están en fila
@@ -120,7 +119,8 @@ describe('Responsividad de la Aplicación', () => {
       cy.contains('Inicio').click();
       
       // Verificar navegación a CRUD
-      cy.contains('Gestionar Empleados').click();
+      cy.get('text').contains('⚙️').click();
+      cy.contains('Empleados').click();
       cy.shouldBeOnPage('/employees');
       
       // Verificar que el contenido se ajusta

@@ -4,13 +4,20 @@ describe('Gestión de Empleados', () => {
   });
 
   it('debe navegar a la gestión de empleados', () => {
-    cy.contains('Gestionar Empleados').click();
+    // Ir a configuración primero
+    cy.contains('⚙️').click();
+    cy.shouldBeOnPage('/settings');
+    
+    // Luego a empleados
+    cy.contains('Empleados').click();
     cy.shouldBeOnPage('/employees');
     cy.contains('Gestión de Empleados').should('be.visible');
   });
 
   it('debe mostrar la lista de empleados existentes', () => {
-    cy.contains('Gestionar Empleados').click();
+    // Ir a configuración y luego a empleados
+    cy.contains('⚙️').click();
+    cy.contains('Empleados').click();
     cy.shouldBeOnPage('/employees');
     
     // Verificar que hay empleados en la lista
@@ -25,7 +32,8 @@ describe('Gestión de Empleados', () => {
   });
 
   it('debe poder filtrar empleados por búsqueda', () => {
-    cy.contains('Gestionar Empleados').click();
+    cy.contains('⚙️').click();
+    cy.contains('Empleados').click();
     cy.shouldBeOnPage('/employees');
     
     // Buscar por nombre
@@ -39,7 +47,8 @@ describe('Gestión de Empleados', () => {
   });
 
   it('debe poder filtrar empleados por área', () => {
-    cy.contains('Gestionar Empleados').click();
+    cy.contains('⚙️').click();
+    cy.contains('Empleados').click();
     cy.shouldBeOnPage('/employees');
     
     // Filtrar por área de Tecnología
@@ -53,17 +62,19 @@ describe('Gestión de Empleados', () => {
   });
 
   it('debe navegar al formulario de crear empleado', () => {
-    cy.contains('Gestionar Empleados').click();
+    cy.contains('⚙️').click();
+    cy.contains('Empleados').click();
     cy.shouldBeOnPage('/employees');
     
     // Hacer clic en el botón de agregar (+)
-    cy.get('text').contains('+').click();
+    cy.contains('+').click();
     cy.shouldBeOnPage('/employee-form');
     cy.contains('Nuevo Empleado').should('be.visible');
   });
 
   it('debe poder editar un empleado existente', () => {
-    cy.contains('Gestionar Empleados').click();
+    cy.contains('⚙️').click();
+    cy.contains('Empleados').click();
     cy.shouldBeOnPage('/employees');
     
     // Buscar y editar a Elena
@@ -74,7 +85,8 @@ describe('Gestión de Empleados', () => {
   });
 
   it('debe mostrar estado activo/inactivo correctamente', () => {
-    cy.contains('Gestionar Empleados').click();
+    cy.contains('⚙️').click();
+    cy.contains('Empleados').click();
     cy.shouldBeOnPage('/employees');
     
     // Verificar badges de estado
@@ -83,7 +95,8 @@ describe('Gestión de Empleados', () => {
   });
 
   it('debe poder cambiar el estado de un empleado', () => {
-    cy.contains('Gestionar Empleados').click();
+    cy.contains('⚙️').click();
+    cy.contains('Empleados').click();
     cy.shouldBeOnPage('/employees');
     
     // Buscar empleado activo y desactivarlo
@@ -95,7 +108,8 @@ describe('Gestión de Empleados', () => {
   });
 
   it('debe mostrar mensaje cuando no hay empleados en los filtros', () => {
-    cy.contains('Gestionar Empleados').click();
+    cy.contains('⚙️').click();
+    cy.contains('Empleados').click();
     cy.shouldBeOnPage('/employees');
     
     // Buscar algo que no existe

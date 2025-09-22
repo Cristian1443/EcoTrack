@@ -5,16 +5,16 @@ describe('Dashboard Corporativo', () => {
   });
 
   it('debe mostrar el botón de Dashboard Corporativo', () => {
-    cy.contains('Dashboard Corporativo').should('be.visible');
+    cy.contains('Dashboard Corporativo').scrollIntoView().should('be.visible');
   });
 
   it('debe navegar al dashboard cuando se hace clic', () => {
-    cy.contains('Dashboard Corporativo').click();
+    cy.contains('Dashboard Corporativo').scrollIntoView().click();
     cy.shouldBeOnPage('/corporate-dashboard');
   });
 
   it('debe mostrar las métricas principales en el dashboard', () => {
-    cy.contains('Dashboard Corporativo').click();
+    cy.contains('Dashboard Corporativo').scrollIntoView().click();
     cy.shouldBeOnPage('/corporate-dashboard');
     
     // Verificar que las métricas están presentes
@@ -26,7 +26,7 @@ describe('Dashboard Corporativo', () => {
   });
 
   it('debe mostrar las acciones rápidas', () => {
-    cy.contains('Dashboard Corporativo').click();
+    cy.contains('Dashboard Corporativo').scrollIntoView().click();
     cy.shouldBeOnPage('/corporate-dashboard');
     
     // Verificar acciones rápidas
@@ -38,46 +38,46 @@ describe('Dashboard Corporativo', () => {
   });
 
   it('debe mostrar el ranking de top performers', () => {
-    cy.contains('Dashboard Corporativo').click();
+    cy.contains('Dashboard Corporativo').scrollIntoView().click();
     cy.shouldBeOnPage('/corporate-dashboard');
     
-    // Verificar ranking
-    cy.contains('Top Performers').should('be.visible');
+    // Hacer scroll para ver el ranking
+    cy.contains('Top Performers').scrollIntoView().should('be.visible');
     cy.contains('#1').should('be.visible'); // Primer lugar
     cy.contains('Elena Ramirez').should('be.visible'); // Ejemplo de empleado
   });
 
   it('debe mostrar el gráfico de rendimiento por área', () => {
-    cy.contains('Dashboard Corporativo').click();
+    cy.contains('Dashboard Corporativo').scrollIntoView().click();
     cy.shouldBeOnPage('/corporate-dashboard');
     
-    // Verificar gráfico de áreas
-    cy.contains('Rendimiento por Área').should('be.visible');
-    cy.contains('Sostenibilidad').should('be.visible');
+    // Hacer scroll para ver el gráfico
+    cy.contains('Rendimiento por Área').scrollIntoView().should('be.visible');
+    cy.contains('Sostenibilidad').scrollIntoView().should('be.visible');
     cy.contains('Tecnología').should('be.visible');
   });
 
   it('debe navegar desde acciones rápidas a módulos específicos', () => {
-    cy.contains('Dashboard Corporativo').click();
+    cy.contains('Dashboard Corporativo').scrollIntoView().click();
     cy.shouldBeOnPage('/corporate-dashboard');
     
-    // Probar navegación a empleados
-    cy.contains('Gestionar Empleados').click();
+    // Probar navegación a empleados desde acciones rápidas
+    cy.contains('Gestionar Empleados').scrollIntoView().click();
     cy.shouldBeOnPage('/employees');
     
-    // Volver al dashboard
+    // Volver al dashboard usando botón back
     cy.go('back');
     cy.shouldBeOnPage('/corporate-dashboard');
     
     // Probar navegación a actividades
-    cy.contains('Ver Actividades').click();
+    cy.contains('Ver Actividades').scrollIntoView().click();
     cy.shouldBeOnPage('/activities');
   });
 
   it('debe ser responsive en diferentes tamaños de pantalla', () => {
     // Probar en móvil
     cy.viewport(375, 667);
-    cy.contains('Dashboard Corporativo').click();
+    cy.contains('Dashboard Corporativo').scrollIntoView().click();
     cy.contains('Resumen Ejecutivo').should('be.visible');
     
     // Probar en tablet
